@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Janaina Feitosa — Desenvolvedora Full Stack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef1f7; --surface:#fff; --ink:#131a33; --muted:#5b6482; --line:#d5dbea;
+  --accent:#2f4bff; --accent-ink:#fff; --sun:#ffb938;
+  --code-bg:#131a33; --code-ink:#dfe5ff; --c-key:#8fa2ff; --c-str:#ffd27a; --c-com:#7580a8;
+  --display:'Bricolage Grotesque',system-ui,sans-serif;
+  --body:'IBM Plex Sans',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1226; --surface:#181c38; --ink:#eef0ff; --muted:#a2a9cc; --line:#2a3060;
+  --accent:#7d90ff; --accent-ink:#0f1226; --code-bg:#0a0c1c;
+}}
+:root[data-theme="dark"]{
+  --bg:#0f1226; --surface:#181c38; --ink:#eef0ff; --muted:#a2a9cc; --line:#2a3060;
+  --accent:#7d90ff; --accent-ink:#0f1226; --code-bg:#0a0c1c;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--body)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1080px,100% - 2.5rem);margin-inline:auto}
+h1,h2,h3{font-family:var(--display);line-height:1.05;margin:0;letter-spacing:-.02em}
+
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font:800 1.2rem var(--display);text-decoration:none}
+.logo span{color:var(--accent)}
+nav ul{display:flex;gap:1.6rem;list-style:none;margin:0;padding:0;align-items:center}
+nav a{text-decoration:none;color:var(--muted);font-weight:500}
+nav a:hover{color:var(--ink)}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink)!important;padding:.75rem 1.4rem;border-radius:999px;font-weight:500;text-decoration:none;border:0;cursor:pointer;font-size:1rem;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--ink)!important;border:1.5px solid var(--line)}
+@media(max-width:640px){nav ul li:not(:last-child){display:none}}
+
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:3.5rem;align-items:center;padding:5rem 0 4rem}
+.hero h1{font-size:clamp(2.6rem,6vw,4.6rem);font-weight:800}
+.hero p{color:var(--muted);max-width:46ch;margin:1.4rem 0 2rem;font-size:1.15rem}
+.cta{display:flex;gap:.8rem;flex-wrap:wrap}
+@media(max-width:860px){.hero{grid-template-columns:1fr;padding-top:3rem}}
+
+.editor{background:var(--code-bg);color:var(--code-ink);border-radius:16px;box-shadow:12px 12px 0 var(--accent);overflow:hidden;font:400 .92rem/1.75 var(--mono)}
+.bar{display:flex;gap:7px;align-items:center;padding:.8rem 1rem;border-bottom:1px solid #ffffff1a;color:var(--c-com);font-size:.8rem}
+.bar i{width:11px;height:11px;border-radius:50%;background:#ffffff33}
+.bar i:first-child{background:var(--sun)}
+.bar em{margin-left:auto;font-style:normal}
+pre{margin:0;padding:1.2rem 1.3rem 1.4rem;min-height:15.5rem;overflow-x:auto;white-space:pre}
+.k{color:var(--c-key)}.s{color:var(--c-str)}.c{color:var(--c-com)}
+.caret{display:inline-block;width:.55ch;height:1.1em;background:var(--sun);vertical-align:text-bottom;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+
+section{padding:4.5rem 0}
+.head{display:flex;justify-content:space-between;align-items:end;gap:2rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.head h2{font-size:clamp(2rem,4vw,3rem);font-weight:800}
+.head p{margin:0;color:var(--muted);max-width:40ch}
+
+.projects{display:grid;grid-template-columns:repeat(6,1fr);gap:1.2rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1.6rem;display:flex;flex-direction:column;gap:.8rem;grid-column:span 2;transition:border-color .2s}
+.card:hover{border-color:var(--accent)}
+.card.big{grid-column:span 4;background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.card.big p{color:inherit;opacity:.85}
+.card h3{font-size:1.5rem}
+.card p{margin:0;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:auto;padding-top:.6rem}
+.tags span{font:500 .78rem var(--mono);padding:.25rem .65rem;border-radius:999px;border:1px solid currentColor;opacity:.8}
+.card a{font-weight:500;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:860px){.card,.card.big{grid-column:span 6}}
+
+.stack{display:flex;flex-wrap:wrap;gap:.7rem}
+.stack button{font:500 1rem var(--mono);background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:12px;padding:.7rem 1.1rem;cursor:pointer;transition:.15s}
+.stack button:hover,.stack button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+#stack-note{margin-top:1.6rem;min-height:3.4rem;color:var(--muted);max-width:60ch}
+
+.contact{background:var(--ink);color:var(--bg);border-radius:28px;padding:clamp(2rem,6vw,4.5rem);text-align:left}
+.contact h2{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;max-width:14ch}
+.contact p{max-width:44ch;opacity:.8;margin:1.2rem 0 2rem}
+.contact .btn{background:var(--sun);color:#131a33!important}
+.copied{margin-left:1rem;opacity:0;transition:opacity .2s}
+.copied.on{opacity:1}
+footer{padding:2.5rem 0 3rem;color:var(--muted);font-size:.95rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+footer a{text-decoration:none}footer a:hover{color:var(--ink)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header>
+  <nav class="wrap" aria-label="Principal">
+    <a class="logo" href="#topo">janaina<span>.dev</span></a>
+    <ul>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a class="btn" href="#contato">Vamos conversar</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="topo">
+  <div class="wrap hero">
+    <div>
+      <h1>Eu transformo ideias em produtos que funcionam.</h1>
+      <p>Sou Janaina, desenvolvedora full stack com 6 anos de experiência. Construo interfaces rápidas e APIs confiáveis para startups e times de produto.</p>
+      <div class="cta">
+        <a class="btn" href="#projetos">Ver projetos</a>
+        <a class="btn ghost" href="#contato">Entrar em contato</a>
+      </div>
+    </div>
+    <div class="editor" aria-label="Exemplo de código descrevendo a desenvolvedora">
+      <div class="bar"><i></i><i></i><i></i><em>janaina.js</em></div>
+      <pre id="code" aria-live="off"></pre>
+    </div>
+  </div>
+
+  <section id="projetos">
+    <div class="wrap">
+      <div class="head">
+        <h2>Projetos recentes</h2>
+        <p>Alguns trabalhos em que cuidei do produto do design ao deploy.</p>
+      </div>
+      <div class="projects">
+        <article class="card big">
+          <h3>Pagaí — painel financeiro</h3>
+          <p>Dashboard em tempo real para pequenas empresas acompanharem caixa, cobranças e metas. Reduziu o tempo de fechamento mensal de 3 dias para 2 horas.</p>
+          <div class="tags"><span>React</span><span>Node.js</span><span>PostgreSQL</span></div>
+          <a href="#contato">Ver estudo de caso</a>
+        </article>
+        <article class="card">
+          <h3>Rota Verde</h3>
+          <p>App de caronas para campus universitários.</p>
+          <div class="tags"><span>React Native</span><span>Firebase</span></div>
+          <a href="#contato">Ver detalhes</a>
+        </article>
+        <article class="card">
+          <h3>Lume CLI</h3>
+          <p>Ferramenta open source que gera documentação a partir de comentários no código.</p>
+          <div class="tags"><span>TypeScript</span><span>Node.js</span></div>
+          <a href="https://github.com/janainasouza-dev" target="_blank" rel="noopener">Ver no GitHub</a>
+        </article>
+        <article class="card big">
+          <h3>Feira Online — e-commerce</h3>
+          <p>Loja para produtores locais com pagamento por Pix, controle de estoque e entrega agendada. Performance nota 98 no Lighthouse.</p>
+          <div class="tags"><span>Next.js</span><span>Stripe</span><span>Tailwind</span></div>
+          <a href="#contato">Ver estudo de caso</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="wrap">
+      <div class="head">
+        <h2>Ferramentas do dia a dia</h2>
+        <p>Clique em uma tecnologia para ver como eu uso.</p>
+      </div>
+      <div class="stack" id="stack-list"></div>
+      <p id="stack-note" aria-live="polite">Escolha uma tecnologia acima.</p>
+    </div>
+  </section>
+
+  <section id="contato">
+    <div class="wrap">
+      <div class="contact">
+        <h2>Tem um projeto em mente?</h2>
+        <p>Me conte o que você quer construir. Respondo em até 24 horas úteis.</p>
+        <button class="btn" id="copy" type="button">Copiar meu e-mail</button>
+        <span class="copied" id="copied" role="status">E-mail copiado!</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <span>© <span id="year"></span> Janaina Feitosa</span>
+  <span><a href="https://github.com/janainasouza-dev" target="_blank" rel="noopener">GitHub</a> &nbsp; <a href="#">LinkedIn</a> &nbsp; <a href="#">Currículo</a></span>
+</footer>
+
+<script>
+// Digitação do código no hero (única animação automática da página)
+const lines=[
+'<span class="c">// quem sou eu</span>',
+'<span class="k">const</span> janaina = {',
+'  cargo: <span class="s">"Dev Full Stack"</span>,',
+'  cidade: <span class="s">"Colinas, TO"</span>,',
+'  foco: [<span class="s">"React"</span>, <span class="s">"Node"</span>, <span class="s">"UX"</span>],',
+'  disponivel: <span class="k">true</span>',
+'};'
+];
+const el=document.getElementById('code');
+const plain=lines.map(l=>l.replace(/<[^>]+>/g,''));
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function render(li,ci){
+  let out='';
+  for(let i=0;i<lines.length;i++){
+    if(i<li) out+=lines[i]+'\n';
+    else if(i===li) out+=typed(lines[i],ci)+'\n';
+  }
+  el.innerHTML=out+'<span class="caret"></span>';
+}
+// corta o HTML preservando as tags até o caractere ci
+function typed(html,ci){
+  let n=0,res='',inTag=false;
+  for(const ch of html){
+    if(ch==='<')inTag=true;
+    if(!inTag){ if(n>=ci)break; n++; }
+    res+=ch;
+    if(ch==='>')inTag=false;
+  }
+  return res+(res.split('<span').length>res.split('</span>').length?'</span>':'');
+}
+if(reduce){render(lines.length,0)}
+else{
+  let li=0,ci=0;
+  (function step(){
+    if(li>=lines.length){render(lines.length,0);return}
+    render(li,ci);
+    ci++;
+    if(ci>plain[li].length){li++;ci=0;setTimeout(step,180)}
+    else setTimeout(step,32);
+  })();
+}
+
+// Stack interativa
+const stack={
+  'JavaScript':'Minha base para tudo: do navegador ao servidor, sempre com foco em código legível.',
+  'TypeScript':'Uso em todo projeto novo. Pega erros antes de chegarem ao usuário.',
+  'React':'Interfaces componentizadas, com atenção a acessibilidade e desempenho.',
+  'Node.js':'APIs REST e GraphQL, filas e integrações com serviços de pagamento.',
+  'PostgreSQL':'Modelagem cuidadosa, índices certos e consultas que escalam.',
+  'Docker':'Ambientes idênticos do meu computador à produção.'
+};
+const list=document.getElementById('stack-list'),note=document.getElementById('stack-note');
+Object.keys(stack).forEach(name=>{
+  const b=document.createElement('button');
+  b.type='button';b.textContent=name;b.setAttribute('aria-pressed','false');
+  b.onclick=()=>{
+    list.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed','false'));
+    b.setAttribute('aria-pressed','true');note.textContent=stack[name];
+  };
+  list.appendChild(b);
+});
+
+// Copiar e-mail
+const email='janaina@exemplo.dev';
+document.getElementById('copy').onclick=async()=>{
+  try{await navigator.clipboard.writeText(email)}catch(e){}
+  const c=document.getElementById('copied');c.textContent='Copiado: '+email;c.classList.add('on');
+  setTimeout(()=>c.classList.remove('on'),2500);
+};
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
